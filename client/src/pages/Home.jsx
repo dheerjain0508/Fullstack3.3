@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
+import ConnectionTest from '../components/common/ConnectionTest';
 
 const Home = () => {
   return (
     <div style={containerStyle}>
+      
+      {/* Hero Section */}
       <div style={heroStyle}>
-        <h1 style={titleStyle}>{/* Platform Name/Tagline */}</h1>
+        <h1 style={titleStyle}>Your Platform Name</h1>
         <p style={subtitleStyle}>
-          {/* Brief description of what your platform does */}
+          Your platform description goes here
         </p>
         <div style={ctaStyle}>
           <Link to="/register" style={buttonStyle}>
@@ -18,29 +21,38 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Features Section (Optional) */}
+      {/* 🔌 Connection Test Section */}
+      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
+        <ConnectionTest />
+      </div>
+
+      {/* Features Section */}
       <div style={featuresStyle}>
-        <h2>Why Choose {/* Platform Name */}?</h2>
+        <h2>Why Choose Your Platform?</h2>
         <div style={featureGridStyle}>
-          {/* Add 3 feature cards based on your theme */}
+          
           <div style={featureCardStyle}>
-            <h3>Feature 1</h3>
-            <p>Description</p>
+            <h3>Fast Performance</h3>
+            <p>Optimized backend ensures smooth user experience.</p>
           </div>
+
           <div style={featureCardStyle}>
-            <h3>Feature 2</h3>
-            <p>Description</p>
+            <h3>Secure</h3>
+            <p>Advanced security practices to protect your data.</p>
           </div>
+
           <div style={featureCardStyle}>
-            <h3>Feature 3</h3>
-            <p>Description</p>
+            <h3>Scalable</h3>
+            <p>Built to grow with your users and traffic.</p>
           </div>
+
         </div>
       </div>
     </div>
   );
 };
 
+// Styles
 const containerStyle = {
   minHeight: '100vh',
 };
