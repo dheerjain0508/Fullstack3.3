@@ -204,7 +204,7 @@ const Register = () => {
 
 export default Register;
 
-/* 🎨 Styles */
+/*  Styles */
 const containerStyle = {
   minHeight: '100vh',
   display: 'flex',

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
   // Form state
@@ -14,8 +15,9 @@ const Login = () => {
   const [apiError, setApiError] = useState('');
 
   const navigate = useNavigate();
+  const { login } = useAuth(); // 
 
-  // ✅ Handle input change
+  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -36,7 +38,7 @@ const Login = () => {
     if (apiError) setApiError('');
   };
 
-  // ✅ Validate form
+  // Validate form
   const validateForm = () => {
     const newErrors = {};
 
@@ -54,7 +56,7 @@ const Login = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // ✅ Handle submit
+  // Handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -77,8 +79,8 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+        //  Use context instead of localStorage
+        login(data.user, data.token);
 
         setFormData({ email: '', password: '' });
 
@@ -167,6 +169,7 @@ const Login = () => {
 
 export default Login;
 
+// Styles
 const containerStyle = {
   minHeight: '80vh',
   display: 'flex',
@@ -273,4 +276,3 @@ const linkStyle = {
   textDecoration: 'none',
   fontWeight: '500',
 };
-
