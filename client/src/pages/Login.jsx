@@ -1,20 +1,21 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-
-const Login = () => {
+import { useLocation } from 'react-router-dom';
+  const Login = () => {
   // Form state
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
-
+  const location = useLocation();
+  const navigate = useNavigate();
   // UI states
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState('');
 
-  const navigate = useNavigate();
+  
   const { login } = useAuth(); // 
 
   // Handle input change
@@ -61,7 +62,7 @@ const Login = () => {
     e.preventDefault();
 
     setApiError('');
-
+    
     if (!validateForm()) return;
 
     setIsLoading(true);
@@ -84,7 +85,8 @@ const Login = () => {
 
         setFormData({ email: '', password: '' });
 
-        navigate('/dashboard');
+        const from = location.state?.from?.pathname || '/dashboard';
+        navigate(from, { replace: true });
       } else {
         setApiError(data.message || 'Login failed. Please try again.');
       }

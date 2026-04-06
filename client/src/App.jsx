@@ -7,7 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
-
+import PublicRoute from './components/common/PublicRoutes';
 
 function App() {
   return (
@@ -20,13 +20,13 @@ function App() {
           {/* Main content */}
           <main style={mainStyle}>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<Home />} />              
+              <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+              <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
               <Route path="/dashboard" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>}/>
-
-              {/* 404 fallback */}
               <Route path="*" element={<NotFound />} />
+
+              
             </Routes>
           </main>
 
