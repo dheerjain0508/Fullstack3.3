@@ -21,7 +21,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* 🔌 Connection Test Section */}
+      {/*  Connection Test Section */}
       <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
         <ConnectionTest />
       </div>
